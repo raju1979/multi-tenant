@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { apiFetch } from '../apiClient';
 import { 
   X, 
   Building2, 
@@ -38,7 +39,7 @@ export const OnboardingModal = ({ isOpen, onClose }) => {
 
     setLoading(true);
     try {
-      const res = await fetch('/api/onboard-tenant', {
+      const res = await apiFetch('/api/onboard-tenant', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

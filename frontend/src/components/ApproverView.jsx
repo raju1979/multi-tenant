@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { apiFetch } from '../apiClient';
 import { 
   ShieldCheck, 
   CheckCircle2, 
@@ -27,7 +28,7 @@ export const ApproverView = () => {
     if (!rawToken) return;
     setLoading(true);
     try {
-      const res = await fetch('/api/expenses', {
+      const res = await apiFetch('/api/expenses', {
         headers: { 'Authorization': `Bearer ${rawToken}` }
       });
       const data = await res.json();
@@ -60,7 +61,7 @@ export const ApproverView = () => {
     }
 
     try {
-      const res = await fetch(`/api/expenses/${expense.id}/decision`, {
+      const res = await apiFetch(`/api/expenses/${expense.id}/decision`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

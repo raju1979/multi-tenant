@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { apiFetch } from '../apiClient';
 import { 
   Building2, 
   Lock, 
@@ -32,7 +33,7 @@ export const LoginScreen = ({ onOpenArchitecture, onOpenOnboard }) => {
 
   // Fetch available tenants from MySQL backend
   useEffect(() => {
-    fetch('/api/tenants')
+    apiFetch('/api/tenants')
       .then(res => res.json())
       .then(data => {
         if (data.tenants && data.tenants.length > 0) {

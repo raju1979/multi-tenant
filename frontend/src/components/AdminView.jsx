@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { apiFetch } from '../apiClient';
 import { 
   Users, 
   UserPlus, 
@@ -33,7 +34,7 @@ export const AdminView = () => {
     if (!rawToken || !tenantId) return;
     setLoadingUsers(true);
     try {
-      const res = await fetch(`/api/tenants/${tenantId}/users`, {
+      const res = await apiFetch(`/api/tenants/${tenantId}/users`, {
         headers: { 'Authorization': `Bearer ${rawToken}` }
       });
       const data = await res.json();
@@ -63,7 +64,7 @@ export const AdminView = () => {
 
     setOnboarding(true);
     try {
-      const response = await fetch('/api/create-tenant-user', {
+      const response = await apiFetch('/api/create-tenant-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

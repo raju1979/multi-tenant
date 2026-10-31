@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { apiFetch } from '../apiClient';
 import { 
   Receipt, 
   PlusCircle, 
@@ -33,7 +34,7 @@ export const SubmitterView = () => {
     if (!rawToken) return;
     setLoading(true);
     try {
-      const res = await fetch('/api/expenses', {
+      const res = await apiFetch('/api/expenses', {
         headers: { 'Authorization': `Bearer ${rawToken}` }
       });
       const data = await res.json();
@@ -64,7 +65,7 @@ export const SubmitterView = () => {
 
     setSubmitting(true);
     try {
-      const res = await fetch('/api/expenses', {
+      const res = await apiFetch('/api/expenses', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,7 +103,7 @@ export const SubmitterView = () => {
     if (!confirm('Are you sure you want to withdraw this expense?')) return;
 
     try {
-      const res = await fetch(`/api/expenses/${id}`, {
+      const res = await apiFetch(`/api/expenses/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${rawToken}` }
       });

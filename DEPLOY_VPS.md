@@ -10,7 +10,15 @@ The Multi-Tenant SaaS backend is deployed and running on your VPS alongside the 
 | :--- | :--- | :--- | :--- | :--- |
 | **ApnaDesign** | `apnadesign.service` | `3000` | `https://apnadesign.ajarafashion.com` | 🟢 Active |
 | **Reactor Arena** | `unreal-arena.service` | `3001` | `https://unreal-api.ajarafashion.com` | 🟢 Active |
-| **Multi-Tenant SaaS** | `multitenant-backend.service` | `5001` | `http://65.75.203.202:5001` | 🟢 Active |
+| **Multi-Tenant SaaS** | `multitenant-backend.service` | `5001` | `https://65.75.203.202/api` (Caddy HTTPS Reverse Proxy) | 🟢 Active |
+
+---
+
+### Hostinger Remote MySQL Configuration Note
+When connecting from the VPS to Hostinger shared MySQL (`srv1674.hstgr.io`), Hostinger's Remote MySQL whitelist only whitelists the specific IPv4 address (`65.75.203.202`). If using domain hostname `srv1674.hstgr.io`, Linux may route traffic over IPv6 (`2606:cc0:400:320::1`) which results in:
+`Access denied for user '...'@'2606:cc0:400:320::1'`
+
+**Solution**: Set `DB_HOST=193.203.184.160` (the direct IPv4 address of `srv1674.hstgr.io`) in `/opt/multi-tenant-backend/.env` to ensure all queries egress via the whitelisted IPv4 address.
 
 ---
 

@@ -1,0 +1,22 @@
+{
+  "name": "mysql-multitenant-saas-expense-app",
+  "version": "1.0.0",
+  "description": "Multi-Tenant SaaS Expense Application built with MySQL, Express, React, and Tod Golding SaaS Architecture",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "db:migrate": "cd backend && node scripts/migrate.js",
+    "start": "echo 'Run: npm run dev:backend in terminal 1, and npm run dev:frontend in terminal 2'"
+  },
+  "keywords": [
+    "multitenancy",
+    "saas",
+    "mysql",
+    "relational-database",
+    "jwt",
+    "tod-golding"
+  ],
+  "author": "Antigravity Pair Programmer",
+  "license": "MIT"
+}
